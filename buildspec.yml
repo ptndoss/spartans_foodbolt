@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - docker build -t spartansrepo .
+
+  post_build:
+    commands:
+      - eval `aws ecr get-login --region us-east-1`
+      - docker tag spartansrepo:latest 473305622719.dkr.ecr.us-east-1.amazonaws.com/spartansrepo:latest
+      - docker push 473305622719.dkr.ecr.us-east-1.amazonaws.com/spartansrepo:latest

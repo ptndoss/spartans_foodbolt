@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodBolt UserProfile</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="/static/test.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+.emp-profile {
+	width: 100%;
+	margin-top: 5%;
+}
+
+.profile-pic {
+	float: left;
+	width: 30%;
+}
+
+.profile {
+	width: 100%;
+	margin-top: 9%;
+}
+
+.myclass {
+	align: "right"
+}
+
+.uservalue {
+	margin-left: -30%;
+}
+
+.logo {
+	line-height: 60px;
+	position: fixed;
+	float: left;
+	margin: 16px 46px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 200px;
+	letter-spacing: 2px;
+}
+#list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+.navlist {
+  float: right;
+  margin-right:150px;
+}
+
+.navheader {
+  display: block;
+  color: grey;
+  border: none;
+  background: none;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navheader:hover {
+	
+  cursor:pointer;
+  text-decoration: none;
+}
+</style>
+
+<script>
+   $(document).ready(function() {
+    //To hide the menu
+     $(".hidediv").click(function () {
+     $(".table").hide("fast",function(){
+    });
+   });    
+});
+ $(document).ready(function() {
+	    //To show the menu
+	     $(".showdiv").click(function () {
+	     $(".table").show("fast",function(){
+	    });
+	   });    
+	});
+  
+</script>
+</head>
+<body>
+	<!-- <nav class="navbar navbar-expand-sm bg-light navbar-light">
+		<ul class="navbar-nav">
+			<li class="nav-item active"><a class="nav-link" href="#">Active</a>
+			</li>
+			<li class="nav-item"><a onclick="location.href='/logout'" class="nav-link">Logout</a></li>
+			<li class="nav-item"><a onclick="location.href='/serviceProvider'">Restaurants</a></li>
+			</li>
+		</ul>
+	</nav> -->
+	<ul id="list">
+		<li class="navlist"><a class="navheader" onclick="location.href='/logout'">Logout</a></li>
+		<li class="navlist"><a class="navheader" onclick="location.href='/restaurant'">Home</a></li>
+	</ul>
+	<div>
+		<p>
+			
+		</p>
+	</div>
+	<div class="container emp-profile">
+		<div class="profile-pic">
+
+			<form method="post">
+
+				<div class="col-md-4">
+					<div class="profile-img">
+						<img src="/icons/profilePic.png" alt="" /> <br> <br>
+						<div class="file btn btn-lg">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="right-content">
+			<div class="col-md-8">
+				<div class="profile-head">
+
+
+					<div>
+						<h3
+							th:text="${userDetails.first_name} + ' ' + ${userDetails.last_name}">
+						</h3>
+					</div>
+				</div>
+
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">About</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">Edit</a></li>
+
+				</ul>
+			</div>
+			<div class="row">
+				<div class="profile">
+					<div class="tab-content profile-tab" id="myTabContent">
+						<div align="left" class="tab-pane fade show active" id="home"
+							role="tabpanel" aria-labelledby="home-tab">
+							<div class="row">
+								<div class="col-md-7">
+									<label>User Id</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.cust_id}"></h6>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>First Name</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<div>
+										<h6 th:text="${userDetails.First_name}"></h6>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>Last Name</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<div>
+										<h6 th:text="${userDetails.last_name}"></h6>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>Email</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.email}"></h6>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-7">
+									<label>City</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.city}"></h6>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-7">
+									<label>State</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.state}"></h6>
+								</div>
+							</div>
+
+
+
+							<div class="row">
+								<div class="col-md-7">
+									<label>Preferred No.of Guests</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.default_guests}"></h6>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-7">
+									<label>Preferred Restaurant</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${RestaurantName}"></h6>
+
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-7">
+									<label>Preferred BookingTime</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.pref_bookingTime}"></h6>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">
+							<form method="post" th:action="@{/userprofile}"
+								th:object=${CustomerDetails} role="form">
+								<div class="row">
+									<div class="col-md-7">
+										<label>First Name</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="first_name"
+											name="first_name" th:value="${userDetails.First_name}">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>Last Name</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="lastName"
+											name="last_name" th:value="${userDetails.last_name}">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>City</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="city" name="city"
+											th:value="${userDetails.city}">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>State</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="state"
+											name="state" th:value="${userDetails.state}">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-7">
+										<label>Preferred Restaurant</label>
+									</div>
+									<div class="col-md-5 uservalue">
+
+										<select name="pref_restaurantID">
+											<option th:each="restaurants : ${restaurants}"
+												th:value="${restaurants.restaurant_id}"
+												th:text="${restaurants.restaurant_name}"></option>
+										</select>
+
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-7">
+										<label>Preferred Timing</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="time" class="form-control" id="pref_bookingTime"
+											name="pref_bookingTime">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-7">
+										<label>Preferred No. Guests</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="default_guests"
+											name="default_guests">
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">
+									<b>Update Profile</b>
+								</button>
+							</form>
+							<div></div>
+						</div>
+						
+						
+
+						<div id="reservation">
+							<table class="table table-hover" style="width: 50%">
+								<tr>
+									<!-- <th>UserID</th> -->
+									<th>Restaurant Name</th>
+									<th>Booking ID</th>
+									<th>Booking Date</th>
+									<th>BookingTime</th>
+									<th>Status</th>
+									<th>Cancel Reservation</th>
+
+								</tr>
+								<tr th:each="bookings : ${bookings}">
+
+									<!-- <td th:text="${postForAdmin.userID}" th:id ="file">UserID</td> -->
+									<td th:text="${bookings.RestaurantName}">Booking Date</td>
+									<td th:text="${bookings.BookingID}">Booking Date</td>
+									<td th:text="${bookings.BookingDate}">Booking Date</td>
+									<td th:text="${bookings.BookingTime}">Booking Time</td>
+									<td th:text="${bookings.status}">Status</td>
+									<td><a
+										th:href="@{'/cancelBooking/'+ ${bookings.BookingID}}">Cancel</a></td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <title>Food Bolt</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="newstyle.css" rel="stylesheet">
+  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+   $(document).ready(function() {
+    //To hide the menu
+     $(".hidediv").click(function () {
+     $(".table").hide("fast",function(){
+    });
+   });    
+});
+ $(document).ready(function() {
+	    //To show the menu
+	     $(".showdiv").click(function () {
+	     $(".table").show("fast",function(){
+	    });
+	   });    
+	});
+</script>
+<style>
+li:hover {
+	cursor:pointer;
+}
+body {  
+background-image: 
+    url("/icons/restaurant.jpg");
+      background-size: cover;
+}
+#reservation {
+background-color:white;
+border-radius:10px;
+margin-top:100px;
+width:50%;
+}
+#tab {
+margin-top:20px;
+margin-bottom:20px;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FoodBolt</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Service Provider</a></li>
+      <li class="hidediv"><a>Hide Reservations</a></li>
+      <li class="showdiv"><a href="#">Show Reservations</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a onclick="location.href='/logout'"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav> <center>
+       <div id="reservation">
+        <table id="tab" class="table table-hover" style="width:100%">
+            <tr>
+            	<!-- <th>UserID</th> -->
+                <th>Booking ID</th>
+                <th>Booking Date</th>
+                <th>BookingTime</th>
+                <th>Status</th>
+                 <th>Cancel Reservation</th>
+                
+            </tr>           
+           <tr th:each="reservation : ${reservation}">
+        
+        	<!-- <td th:text="${postForAdmin.userID}" th:id ="file">UserID</td> -->
+        	<td th:text="${reservation.BookingID}">Booking ID</td>
+        	<td th:text="${reservation.BookingDate}">Booking Date</td>
+        	<td th:text="${reservation.BookingTime}">Booking Time</td>
+        	<td th:text="${reservation.status}">Status</td>
+        	<td> <a class="btn btn-danger btn-lg"  th:href="@{'/cancelReservation/'+ ${reservation.BookingID}}">
+          <span class="glyphicon glyphicon-remove"></span> Cancel</a></td>
+           </tr> 
+           
+        </table>
+        
+    </div>
+	</center>
+
+
+</body>
+</html>

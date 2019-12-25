@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>FoodBolt</title>
+ <link rel="stylesheet" href="/css/reserveTable.css">
+ 
+</head>
+<body>
+<div class="container">
+      <div class="form">
+        <div class="topic">
+          <center>RESERVE TABLE</center><br>
+        </div>
+<form class="modal-content" method="post" th:action="@{reserveTable}" th:object = ${ReserveTable}  enctype="multipart/form-data" >
+<input type="text" pattern="[0-9]{1,3}" name="no_of_guests" placeholder="Number of Guests" required><br>
+<input type="date" name="BookingDate" placeholder="Date" required><br>
+<input type="time" name="BookingTime" placeholder="Time" required><br>
+<button>Reserve Table</button>
+</form>
+</div>
+</div>
+<script>
+var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("BookingDate")[0].setAttribute('min', today);
+</script>
+</body>
+</html>
